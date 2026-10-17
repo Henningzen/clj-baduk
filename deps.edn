@@ -4,9 +4,9 @@
         org.clojure/tools.deps {:mvn/version "0.31.1646"}
         org.clojure/tools.namespace {:mvn/version "1.5.1"}}
 
- :aliases {:run-m {:main-opts ["-m" "jansenh.clj-go"]}
-           :run-x {:ns-default jansenh.clj-go
-                   :exec-fn clj-go
+ :aliases {:run-m {:main-opts ["-m" "jansenh.clj-baduk"]}
+           :run-x {:ns-default jansenh.clj-baduk
+                   :exec-fn clj-baduk
                    :exec-args {}}
 
            :build {:deps {io.github.clojure/tools.build {:mvn/version "0.10.14"}}
