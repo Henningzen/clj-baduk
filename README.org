@@ -42,7 +42,7 @@
 
    #+BEGIN_SRC clojure
      ;;  navigate to the board namespace
-     (ns no.jansenh.clj-baduk.board)
+     (ns no.jansenh.clj-baduk.core)
      ;; start the game
      (-main)
      ;; and interact with the game as player :white

@@ -1,4 +1,4 @@
-;;; src/jansenh/clj-go/terminal-board.clj  ---  Go game terminal board
+;;; src/jansenh/clj-baduk/terminal-board.clj  ---  Go game terminal board
 
 ;   Copyright (c) Henning Jansen 2025 - 2026
 ;   The use and distribution terms for this software are covered by the
@@ -13,7 +13,7 @@
 ;; License: Eclipse Public License 2.0 - http://www.eclipse.org/legal/epl-2.0
 ;;------------------------------------------------------------------------------
 
-(ns jansenh.clj-go.terminal-board
+(ns jansenh.clj-baduk.terminal-board
   {:author "Henning Jansen"
     :doc    "Terminal board for REPL representation of the Go game vector."
     :added "0.1.1"})

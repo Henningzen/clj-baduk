@@ -1,4 +1,4 @@
-;;; src/jansenh/clj-go/utilities.clj  ---  Go game utilities
+;;; src/jansenh/clj-baduk/utilities.clj  ---  Go game utilities
 
 ;   Copyright (c) Henning Jansen 2025 - 2026
 ;   The use and distribution terms for this software are covered by the
@@ -13,7 +13,7 @@
 ;; License: Eclipse Public License 2.0 - http://www.eclipse.org/legal/epl-2.0
 ;;-----------------------------------------------------------------------------
 
-(ns jansenh.clj-go.utilities
+(ns jansenh.clj-baduk.utilities
   {:author "Henning Jansen"
     :doc    "Go game utilities."
     :added "0.1.1"})

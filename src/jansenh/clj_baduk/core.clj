@@ -1,4 +1,4 @@
-;;; config.clj --- clj-go.config
+;;; src/jansenh/clj-baduk/core.clj  ---  Go game
 
 ;   Copyright (c) Henning Jansen 2025 - 2026
 ;   The use and distribution terms for this software are covered by the
@@ -7,15 +7,26 @@
 ;   By using this software in any fashion, you are agreeing to be bound by
 ;   the terms of this license. You must not remove this notice, or any other,
 ;   from this software.
-
+;
 ;; Author:  Henning Jansen - henning.jansen@jansenh.no
 ;; Date:    September 2025
 ;; License: Eclipse Public License 2.0 - http://www.eclipse.org/legal/epl-2.0
+;;-----------------------------------------------------------------------------
 
-(ns jansenh.clj-go.config
-  {:author "Henning Jansen"
-   :doc    "clj-go immutable configurations."
-   :added "0.1.3"})
+(ns jansenh.clj-baduk.core
+  ^{:author "Henning Jansen"
+    :doc    "clj-baduk core namespace"
+    :added "0.1.0"}
+  (:require [jansenh.clj-baduk.board :refer [create-frame]])
+  (:gen-class))
 
-;;; Grid size, represeting the board as 'grid-size * grid-size
-(def grid-size 9)
+
+(defn clj-baduk
+  "Game engine starting point."
+  [& args]
+  (create-frame))
+
+(defn -main
+  "Application main entry point."
+  [& args]
+  (clj-baduk))

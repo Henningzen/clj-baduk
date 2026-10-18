@@ -1,4 +1,4 @@
-;;; src/jansenh/clj-go/board.clj  ---  Go game graphical board
+;;; src/jansenh/clj-baduk/board.clj  ---  Go game graphical board
 
 ;   Copyright (c) Henning Jansen 2025 - 2026
 ;   The use and distribution terms for this software are covered by the
@@ -12,21 +12,23 @@
 ;; Date:    September 2025
 ;; License: Eclipse Public License 2.0 - http://www.eclipse.org/legal/epl-2.0
 
-(ns jansenh.clj-go.board
+(ns jansenh.clj-baduk.board
   ^{:author "Henning Jansen"
-    :doc    "clj-go.board namespace, Go game graphical board."
+    :doc    "clj-baduk.board namespace, Go game graphical board."
     :added "0.1.1"}
-  (:require [jansenh.clj-go.config :refer [grid-size]]
+  (:require [jansenh.clj-baduk.config :refer [grid-size]]
             [seesaw.color :as color]
             [seesaw.core :as s]
             [seesaw.graphics :as g])
   (:import [java.awt Color]))
 ;;
-;;  Clj-go board
+;;  clj-baduk board
 ;;  ------------
 ;;
-;;    Clojure Go Game board implementation, using Seesaw clojure wrapper
-;;    for Java Swing AWT graphics.
+;;    Clojure Go Game board implementation "Baduk" after the Korean ruleset.
+;;
+;;    The implementation use Seesaw clojure wrapper for the Java Swing AWT
+;;    graphics graphics representation.
 ;;
 ;;    The Board has a basic state with:
 ;;      - black and white stones on a grid,

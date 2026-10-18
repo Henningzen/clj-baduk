@@ -1,7 +1,7 @@
-(ns jansenh.clj-go.engine-test
+(ns jansenh.clj-baduk.engine-test
   (:require [clojure.test :refer [deftest is testing]]
-            [jansenh.clj-go.engine :as sut]
-            [jansenh.clj-go.utilities :as utils]))
+            [jansenh.clj-baduk.engine :as sut]
+            [jansenh.clj-baduk.utilities :as utils]))
 
 (deftest test-pos
   (let [board (utils/numeric-board 19)]
@@ -79,8 +79,6 @@
 
 (comment
 
-
   (count (utils/empty-board-vector 19))
-
-
+  ,
   )
