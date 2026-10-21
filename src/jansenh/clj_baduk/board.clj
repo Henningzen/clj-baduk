@@ -49,7 +49,6 @@
 ;;      - :white pass move.
 ;;
 
-
 ;; ------------------------------------------------------------------------------
 ;;  Definitions
 
@@ -58,7 +57,6 @@
 (def stone-radius 13)              ; Adjusted stone radius for a 19x19 board  (;TODO)
 (def board-margin 20)              ; Adjusted board margin for a 19x19 board  (;TODO)
 (def total-size (+ (* board-size cell-size) (* 2 board-margin)))
-
 
 ;; ------------------------------------------------------------------------------
 ;;  State Management
@@ -137,7 +135,6 @@
        (.validate frame)
        (.repaint frame)))))
 
-
 ;; ------------------------------------------------------------------------------
 ;;  ML Player - Automata using Machine Learning
 
@@ -179,7 +176,6 @@
     (do
       (handle-resign))
     nil))
-
 
 ;; ------------------------------------------------------------------------------
 ;;  The UI and Its Interactions
