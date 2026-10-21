@@ -2,9 +2,9 @@
   (:refer-clojure :exclude [test])
   (:require [clojure.tools.build.api :as b]))
 
-(def lib 'jansenh/clj-go)
-(def version "0.1.2")
-(def main 'jansenh.clj-go)
+(def lib 'jansenh/clj-baduk)
+(def version "0.1.3")
+(def main 'jansenh.clj-baduk)
 (def class-dir "target/classes")
 
 (defn test "Run all the tests." [opts]

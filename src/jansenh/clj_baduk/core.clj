@@ -1,4 +1,4 @@
-;;; src/jansenh/clj-go/core.clj  ---  Go game
+;;; src/jansenh/clj-baduk/core.clj  ---  Go game
 
 ;   Copyright (c) Henning Jansen 2025 - 2026
 ;   The use and distribution terms for this software are covered by the
@@ -13,20 +13,15 @@
 ;; License: Eclipse Public License 2.0 - http://www.eclipse.org/legal/epl-2.0
 ;;-----------------------------------------------------------------------------
 
-(ns jansenh.clj-go.core
-  (:require [jansenh.clj-go.board :refer [create-frame]])
+(ns jansenh.clj-baduk.core
+  ^{:author "Henning Jansen"
+    :doc    "clj-baduk core namespace"
+    :added "0.1.0"
+    :version "0.1.3"}
+  (:require [jansenh.clj-baduk.board :refer [create-frame]])
   (:gen-class))
 
-;; -----------------------------------------------------------------------------
-;; clj-go core namespace
-;; ---------------------
-;; Clojure Go Game.
-;; authors:   Henning Jansen, henning.jansen@jansenh.no
-;; since:     0.1.0-SNAPSHOT  2025-01-29
-;; version:   0.1.2           2026-05-13
-;; -----------------------------------------------------------------------------
-
-(defn clj-go
+(defn clj-baduk
   "Game engine starting point."
   [& args]
   (create-frame))
@@ -34,4 +29,4 @@
 (defn -main
   "Application main entry point."
   [& args]
-  (clj-go))
+  (clj-baduk))

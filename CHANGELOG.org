@@ -1,25 +1,61 @@
-#+title:  CHANGELOG
+#+title: CHANGELOG
 #+author: Henning Jansen <henning.jansen@jansenh.no>
-#+date:   2025-01-28
+#+date: <2026-10-21 Wed>
 #+STARTUP: overview
 
 * Change Log
-  All notable changes to this project will be documented in this file. This
-  change log follows the conventions
-  of [[https://keepachangelog.com/][keepchangelog.com]]
 
-** 0.1.2 - 2026-05-13
+  All notable changes to this project will be documented in this file.
+  This change log follows the conventions of [[https://keepachangelog.com/][keepchangelog.com]].
+
+** [Unreleased]
+*** Feature
 *** Changed
-    + Initial tests.
-    + Migrate to Eclipse Public License 2.0
-    + Migrate to proper namespace structure 'jansenh.clj-go.core'
-    + Introduce dedicated namespace 'dev/user' for REPL development.      
+*** Removed
 
-** 0.1.0 - 2025-03-13
+** [0.1.3] - 2026-10-21
+*** Feature:
+             - Dynamic grid size:
+               - clj-baduk.engine, clj-baduk.board, clj-baduk.utilities, dev
+		 namespaces now supports a configurable grid size, set in
+		 'config.clj'.
+               - The grid sizes are invariants of either 9x9, 13x13 or 19x19
+               - (All tests are updated to support grid-size)
+               - utilities.terminal-board major refactoring
+             - Dev and user namespaces are properly functional, with proper
+	       tooling for interaction between Graphics board game state and
+	       REPL.
+	     - Improved domain semantics:
+	       - baduk for the game name as opposed to 'Go' which appeared way to
+		 comp-sci generic (the programming language).
+	       - the 'go-string' is refactored to 'chain', as the previous name
+		 was problematic for several reasons.
+*** Changed:
+             - Upgrade to Clojure 1.12.6
+             - clj-go.board minor refactorings.
+	     - MAJOR RENAME: GitHub repo, build and deps, all namespaces, all
+	       function names, all vars and let bindings are renamed:
+	       - clj-go ---> clj-baduk, go --> baduk, Go --> Baduk
+	       - go-string --> chain
+*** Fixed:
+             - Broken changelog
+
+*** Removed:
+
+** [0.1.2] - 2026-05-13
+*** Changed
+    - Initial tests.
+    - Migrate to Eclipse Public License 2.0.
+    - Migrate to proper namespace structure 'jansenh.clj-baduk.core'.
+    - Introduce dedicated namespace 'dev/user' for REPL development.
+
+** [0.1.0] - 2025-03-13
 *** Added
-   + Files from the deps-new template.
-   + Initial project documentation.
-   + Board graphics implementation using Clojure Seesaw for Java.Swing.
+    - Files from the deps-new template.
+    - Initial project documentation.
+    - Board graphics implementation using Clojure Seesaw for Java Swing.
 
-[Unreleased]: https://github.com/no.jansenh/clj-go/compare/0.1.0...HEAD
-[0.1.0]: https://github.com/no.jansenh/clj-go/compare/0.1.0...0.1.0-SNAPSHOT
+[Unreleased]: https://github.com/Henningzen/clj-baduk/compare/v0.1.3...v0.1.4-SNAPSHOT
+[0.1.3]: https://github.com/Henningzen/clj-baduk/compare/v0.1.2...v0.1.3
+[0.1.2]: https://github.com/Henningzen/clj-baduk/compare/v0.1.0...v0.1.2
+[0.1.0]: https://github.com/Henningzen/clj-baduk/compare/v0.1.0

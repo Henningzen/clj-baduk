@@ -1,4 +1,4 @@
-(ns jansenh.clj-go.test-utilities
+(ns jansenh.clj-baduk.test-utilities
   (:require  [clojure.test :refer [deftest is testing]]))
 
 

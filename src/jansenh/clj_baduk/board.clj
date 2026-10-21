@@ -1,4 +1,4 @@
-;;; src/jansenh/clj-go/board.clj  ---  Go game graphical board
+;;; src/jansenh/clj-baduk/board.clj  ---  Go game graphical board
 
 ;   Copyright (c) Henning Jansen 2025 - 2026
 ;   The use and distribution terms for this software are covered by the
@@ -11,19 +11,24 @@
 ;; Author:  Henning Jansen - henning.jansen@jansenh.no
 ;; Date:    September 2025
 ;; License: Eclipse Public License 2.0 - http://www.eclipse.org/legal/epl-2.0
-;;-----------------------------------------------------------------------------
 
-(ns jansenh.clj-go.board
-  (:require [seesaw.color :as color]
+(ns jansenh.clj-baduk.board
+  ^{:author "Henning Jansen"
+    :doc    "clj-baduk.board namespace, Go game graphical board."
+    :added "0.1.1"}
+  (:require [jansenh.clj-baduk.config :refer [grid-size]]
+            [seesaw.color :as color]
             [seesaw.core :as s]
             [seesaw.graphics :as g])
   (:import [java.awt Color]))
 ;;
-;;  Clj-go board
+;;  clj-baduk board
 ;;  ------------
 ;;
-;;    Clojure Go Game board implementation, using Seesaw clojure wrapper
-;;    for Java Swing AWT graphics.
+;;    Clojure Go Game board implementation "Baduk" after the Korean ruleset.
+;;
+;;    The implementation use Seesaw clojure wrapper for the Java Swing AWT
+;;    graphics graphics representation.
 ;;
 ;;    The Board has a basic state with:
 ;;      - black and white stones on a grid,
@@ -43,18 +48,14 @@
 ;;      - :white add stone to the board, return true/false.
 ;;      - :white pass move.
 ;;
-;; authors:   Henning Jansen, henning.jansen@jansenh.no
-;; since:     0.1.1-SNAPSHOT  2025-04-17
-;; version:   0.1.2           2026-05-13
-;;
 
 ;; ------------------------------------------------------------------------------
 ;;  Definitions
 
-(def board-size 19)          ; intersections define grid intersections
-(def cell-size 30)           ; Adjusted cell size for a 19x19 board
-(def stone-radius 13)        ; Adjusted stone radius for a 19x19 board
-(def board-margin 20)        ; Adjusted board margin for a 19x19 board
+(def board-size grid-size)  ; Number intersections defines board size
+(def cell-size 30)                 ; Adjusted cell size for a 19x19 board     (;TODO)
+(def stone-radius 13)              ; Adjusted stone radius for a 19x19 board  (;TODO)
+(def board-margin 20)              ; Adjusted board margin for a 19x19 board  (;TODO)
 (def total-size (+ (* board-size cell-size) (* 2 board-margin)))
 
 ;; ------------------------------------------------------------------------------
@@ -77,8 +78,9 @@
   "Convert pixel coordinates to the nearest board intersection"
   [x y]
   (let [i (Math/round (float (/ (- x board-margin) cell-size)))
-        j (Math/round (float (/ (- y board-margin) cell-size)))]
-    (when (and (<= 0 i (dec board-size)) (<= 0 j (dec board-size)))
+        j (Math/round (float (/ (- y board-margin) cell-size)))
+        board-size (dec board-size)]
+    (when (and (<= 0 i board-size) (<= 0 j board-size))
       [i j])))
 
 (defn place-stone
@@ -151,7 +153,7 @@
                (-> state
                    (assoc-in [:board j i] :white)
                    (assoc :current-player :black))))
-      (repaint!) ; TODO: Consider if this is smelly.
+      (repaint!)                   ; TODO: Consider if this is smelly.
       true)
     false))
 

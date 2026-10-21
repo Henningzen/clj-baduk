@@ -1,4 +1,4 @@
-;;; src/jansenh/clj-go/enigne.clj  ---  Go game engine
+;;; src/jansenh/clj-baduk/enigne.clj  ---  Go game engine
 
 ;   Copyright (c) Henning Jansen 2025 - 2026
 ;   The use and distribution terms for this software are covered by the
@@ -13,37 +13,26 @@
 ;; License: Eclipse Public License 2.0 - http://www.eclipse.org/legal/epl-2.0
 ;;-----------------------------------------------------------------------------
 
-(ns jansenh.clj-go.engine
+(ns jansenh.clj-baduk.engine
+  ^{:author "Henning Jansen"
+    :doc    "clj-baduk.engine namespace, Go game engine representation."
+    :added "0.1.0"}
   (:require [clojure.set :as set]))
-
-;; -----------------------------------------------------------------------------
-;; clj-go.engine
-;; -------------
-;;
-;; authors:   Henning Jansen, henning.jansen@jansenh.no
-;; since:     0.1.0-SNAPSHOT  2025-01-29
-;; version:   0.1.2           2026-05-13
-;; -----------------------------------------------------------------------------
-
-(def board-size 19)
-
-(def empty-board
-  "Default empty board, 19 by 19 in x-pos, y-pos vectors. Values are nil."
-  (vec (for [row (range board-size)]
-         (vec (for [col (range board-size)]
-                nil)))))
-
-(defn stone
-  "A stone has a position and a value, the color."
-  [x-pos y-pos player]
-  {:player player
-   :x-pos x-pos
-   :y-pos y-pos})
 
 (defn position->
   "Helper function for transforming position vector or map.
    1. Create a vector [x y] from a map with {:x-pos x, :y-pos y}.
    2. Creates a {:x-pos x, :y-pos y} map from [x y] values."
+  ([m]
+   [(:x-pos m) (:y-pos m)])
+  ([x y]
+   {:x-pos x
+    :y-pos y}))
+
+(defn position->new
+  "Helper function for transforming position vector or map.
+   1. Create a vector [x y] from a map with {:x-pos x, :y-pos y}, {:x-pos 1, :y-pos 1} -> [0 0]
+   2. Creates a {:x-pos x, :y-pos y} map from [x y] values, , [0 0] -> {:x-pos 1, :y-pos 1}"
   ([m]
    [(:x-pos m) (:y-pos m)])
   ([x y]
@@ -84,17 +73,17 @@
           (map #(value-at-position {:x-pos (first %) :y-pos (second %)} board)
                neighbours))))
 
-(defn go-string
-  "Update or merge a go-string. Merges stones if players match and are valid.
+(defn chain
+  "Update or merge a chain of Go stones. Merges stones if players match and are valid.
 
-   The first arity return an empty go-string.
+   The first arity return an empty chain.
 
-   The second arity in the function takes one Go string map and one additional
-   Go string map.
+   The second arity in the function takes one chain map and one additional
+   chain  map.
 
-   The function is agnostic to if we will update an existing Go string with
-   a new version of itself, or if we are merging another Go string in top of
-   the existing Go string. 
+   The function is agnostic to if we will update an existing Go chain with
+   a new version of itself, or if we are merging another Go chain in top of
+   the existing Go chain. 
 
    Returns original map (m) if players don't match or if no map is
    provided for merging.
@@ -102,20 +91,22 @@
    Throws ex-info if the initial player or the player in the
    map is invalid.
 
-   NOTE: The function supports merging only one string (for now).
+   NOTE: The function supports merging only one chain (for now).
 
    NOTE: Operations on 'let with (set...) and (conj- ...) use default values
-         as fallback for consistency."
+         as fallback for consistency.
+
+   Returns: Map representing a Go chain. "
   ([]
    {:player nil :stones #{} :liberties #{}})
   ([m & rst]
    (let [player         (:player m)
          stones         (set (:stones m #{}))
          liberties      (set (:liberties m #{}))
-         conj-string    (first rst)
-         conj-player    (when conj-string (:player conj-string))
-         conj-stones    (when conj-string (set (:stones conj-string #{})))
-         conj-liberties (when conj-string (:liberties conj-string liberties))]
+         conj-chain    (first rst)
+         conj-player    (when conj-chain (:player conj-chain))
+         conj-stones    (when conj-chain (set (:stones conj-chain #{})))
+         conj-liberties (when conj-chain (:liberties conj-chain liberties))]
 
      (cond
        ;; 1. Validate player.
@@ -127,9 +118,9 @@
                         :map m}))
 
        ;; 2. Nothing to merge? We are done and return original input map,
-       ;;    which can be a entirely new go-string, with the let' data from
+       ;;    which can be a entirely new Go chain, with the let' data from
        ;;    the input parameters added..
-       (not conj-string)
+       (not conj-chain)
        m
 
        ;; 3.Validate player in merged map.
@@ -138,7 +129,7 @@
                        {:type ::invalid-player
                         :reason :update-map-invalid
                         :player conj-player
-                        :update-map conj-string
+                        :update-map conj-chain
                         :initial-map m}))
 
        ;; 4. Does the validated players match? Merge
@@ -151,34 +142,33 @@
        :else m))))
 
 (defn remove-liberty
-  "Remove libery from go-string..
-   The liberty has format [x-pos y-pos]."
-  ([go-string lib]
-   (update go-string :liberties disj lib)))
+  "Remove libery from Go chain.
+   The liberty has format [x-pos y-pos]. "
+  ([chain lib]
+   (update chain :liberties disj lib)))
 
 (defn add-liberty
-  "Add libery to go-string.
-   The liberty has format [x-pos y-pos]."
-  ([go-string lib]
-   (update go-string :liberties conj lib))
+  "Add libery to Go chain.
+   The liberty has format [x-pos y-pos]. "
+  ([chain lib]
+   (update chain :liberties conj lib))
   #_([board & libs]                      ;; TODO Adapt to collection of lib's
      (update board :liberties into libs)))
 
-(defn go-string->board
-  "Helper function that will apply a go-string on a board.
+(defn chain->board
+  "Helper function that will apply a Go chain on a board.
    NOTE: the intentional design:
          - We take the board from args and use as the reduce target.
          - The stones are a set of tuples, and we deconstruct them in
            the let binding as x and y.
 
    Arguments:
-     - gs is a go-string
-     - b is a board vector (empty-board is the reference format).
-  "
-  [gs b]
-  (let [player (:player gs)
-        stones (:stones gs)]
+     - m is a chain Map
+     - b is a board Vector. "
+  [m v]
+  (let [player (:player m)
+        stones (:stones m)]
     (reduce (fn [board [x y]]
-              (update-position-at-board (stone x y player) board))
-            b
+              (update-position-at-board {:player player :x-pos x :y-pos y} board))
+            v
             stones)))
