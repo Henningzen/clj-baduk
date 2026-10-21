@@ -19,7 +19,6 @@
     :added "0.1.0"}
   (:require [clojure.set :as set]))
 
-
 (defn position->
   "Helper function for transforming position vector or map.
    1. Create a vector [x y] from a map with {:x-pos x, :y-pos y}.

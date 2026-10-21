@@ -16,10 +16,10 @@
 (ns jansenh.clj-baduk.core
   ^{:author "Henning Jansen"
     :doc    "clj-baduk core namespace"
-    :added "0.1.0"}
+    :added "0.1.0"
+    :version "0.1.3"}
   (:require [jansenh.clj-baduk.board :refer [create-frame]])
   (:gen-class))
-
 
 (defn clj-baduk
   "Game engine starting point."

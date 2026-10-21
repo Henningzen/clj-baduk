@@ -15,8 +15,8 @@
 
 (ns jansenh.clj-baduk.utilities
   {:author "Henning Jansen"
-    :doc    "Go game utilities."
-    :added "0.1.1"})
+   :doc    "Go game utilities."
+   :added "0.1.1"})
 
 (defn empty-board-vector
   "Default empty board vector, 'n by 'n in x-pos, y-pos vectors. Values are nil."
@@ -35,7 +35,6 @@
    :x-pos x-pos
    :y-pos y-pos})
 
-
 (defn numeric-board
   "Data structure with sequence numbers.
    The data-structure is a representation of a board with n by n vector of
@@ -48,7 +47,6 @@
            (vec (for [col (range grid-size)]
                   (inc (+ col (* row grid-size)))))))))
 
-
 (defn patterned-board
   "Scattered board with cycled values.
    Evenly distributed white, black stones with empty (nil) intersects.
@@ -56,9 +54,9 @@
    19 by 19 vector with values :black :white and :nil.
    
    Returns: board vector with evenly toggled :white and :black. "
-   [grid-size]
+  [grid-size]
   (let [grid-size grid-size]
-    
+
     (->> (take (* grid-size grid-size) (cycle [:black :nil :white :nil]))
          (partition grid-size)
          (mapv vec))))

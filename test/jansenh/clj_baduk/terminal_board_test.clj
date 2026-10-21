@@ -9,9 +9,6 @@
   (def board utils/patterned-board)
 
   (sut/symbolic-board utils/patterned-board)
-  (println (sut/symbolic-board utils/patterned-board))
-  
-  ,
-  )
+  (println (sut/symbolic-board utils/patterned-board)))
 
 

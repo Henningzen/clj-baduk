@@ -5,31 +5,31 @@
 
 (deftest test-pos
   (let [board (utils/numeric-board 19)]
-   (testing "We expect to find the corresponding [x y] value on the numeric board."
-     (is (= 41  (sut/value-at-position (sut/position-> 2 2) board)))
-     (is (= 42  (sut/value-at-position (sut/position-> 3 2) board)))
-     (is (= 49  (sut/value-at-position (sut/position-> 10 2) board)))
-     (is (= 193 (sut/value-at-position (sut/position-> 2 10) board)))
-     (is (= 201 (sut/value-at-position (sut/position-> 10 10) board))))))
+    (testing "We expect to find the corresponding [x y] value on the numeric board."
+      (is (= 41  (sut/value-at-position (sut/position-> 2 2) board)))
+      (is (= 42  (sut/value-at-position (sut/position-> 3 2) board)))
+      (is (= 49  (sut/value-at-position (sut/position-> 10 2) board)))
+      (is (= 193 (sut/value-at-position (sut/position-> 2 10) board)))
+      (is (= 201 (sut/value-at-position (sut/position-> 10 10) board))))))
 
 (deftest test-pos-2
   (let [board (utils/numeric-board 19)]
-   (testing "We expect to find the corresponding [x y] value on the numeric board."
-     (is (= 1 (sut/value-at-position (sut/position-> 0 0) board)))
-     (is (= 19 (sut/value-at-position (sut/position-> 18 0) board)))
-     (is (= 343 (sut/value-at-position (sut/position-> 0 18) board)))
-     (is (= 361 (sut/value-at-position (sut/position-> 18 18) board))))))
+    (testing "We expect to find the corresponding [x y] value on the numeric board."
+      (is (= 1 (sut/value-at-position (sut/position-> 0 0) board)))
+      (is (= 19 (sut/value-at-position (sut/position-> 18 0) board)))
+      (is (= 343 (sut/value-at-position (sut/position-> 0 18) board)))
+      (is (= 361 (sut/value-at-position (sut/position-> 18 18) board))))))
 
 (deftest test-pos-edges
   (let [board (utils/numeric-board 19)]
-   (testing "We expect to find the corresponding [x y] value on the numeric board edges."
-     (is (= 1   (sut/value-at-position (sut/position-> 0 0) board)))
-     (is (= 19  (sut/value-at-position (sut/position-> 18 0) board)))
-     (is (= 343 (sut/value-at-position (sut/position-> 0 18) board)))
-     (is (= 361 (sut/value-at-position (sut/position-> 18 18) board))))))
+    (testing "We expect to find the corresponding [x y] value on the numeric board edges."
+      (is (= 1   (sut/value-at-position (sut/position-> 0 0) board)))
+      (is (= 19  (sut/value-at-position (sut/position-> 18 0) board)))
+      (is (= 343 (sut/value-at-position (sut/position-> 0 18) board)))
+      (is (= 361 (sut/value-at-position (sut/position-> 18 18) board))))))
 
 (deftest test-position->
- (testing "We expect to convert positions map and vector."
+  (testing "We expect to convert positions map and vector."
     (is (= {:x-pos 1 :y-pos 1} (sut/position-> 1 1)))
     (is (= [1 1] (sut/position-> {:x-pos 1 :y-pos 1})))))
 
@@ -57,7 +57,7 @@
     (is (= :black (:player (utils/stone :black 1 2))))
     (is (= :white (:player (utils/stone :white 3 4))))
     (is (=  3 (:x-pos (utils/stone :black 3 4))))
-    (is (=  4 (:y-pos (utils/stone :white 3 4 ))))))
+    (is (=  4 (:y-pos (utils/stone :white 3 4))))))
 
 (deftest test-update-position-at-board
   (testing "We expect to update position at board."
@@ -76,9 +76,6 @@
       (is (= 2 (count (:liberties first-string))))
       (is (= 1 (count (:stones first-string)))))))
 
-
 (comment
 
-  (count (utils/empty-board-vector 19))
-  ,
-  )
+  (count (utils/empty-board-vector 19)))

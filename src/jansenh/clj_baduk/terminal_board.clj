@@ -15,8 +15,8 @@
 
 (ns jansenh.clj-baduk.terminal-board
   {:author "Henning Jansen"
-    :doc    "Terminal board for REPL representation of the Go game vector."
-    :added "0.1.1"})
+   :doc    "Terminal board for REPL representation of the Go game vector."
+   :added "0.1.1"})
 
 ;;------------------------------------------------------------------------------
 ;;
@@ -40,7 +40,7 @@
 #_(defn- generate-column-annotations []
   ;; Generate column annotations (A to S for a 19x19 board)
   ;; separated by one space.
-  (apply str (interpose " " (map char (range (int \A) (+ (int \A) board-size))))))
+    (apply str (interpose " " (map char (range (int \A) (+ (int \A) board-size))))))
 
 (defn- generate-column-annotations [board-size]
   ;; Generate column annotations (A to T for a 19x19 board).
