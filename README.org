@@ -1,6 +1,6 @@
 #+title:  README
 #+author: Henning Jansen <henning.jansen@jansenh.no>
-#+date:   <2026-10-17 Sat>
+#+date:   <2026-10-21 Wed>
 #+STARTUP: overview
 
 * clj-baduk
@@ -11,7 +11,7 @@
   Baduk is the Korean ruleset on the classical East Asian boardgame also known
   as Go.
 
-  *Version 0.1.3*
+  *Version 0.1.4-SNAPSHOT*
 
 
 ** Installation

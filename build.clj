@@ -3,7 +3,7 @@
   (:require [clojure.tools.build.api :as b]))
 
 (def lib 'jansenh/clj-baduk)
-(def version "0.1.3")
+(def version "0.1.4-SNAPSHOT")
 (def main 'jansenh.clj-baduk)
 (def class-dir "target/classes")
 
